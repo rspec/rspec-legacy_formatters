@@ -1,0 +1,13 @@
+#!/bin/bash
+# This file was generated on 2014-03-30T13:16:22-07:00 from the rspec-dev repo.
+# DO NOT modify it by hand as your changes will get lost the next time it is generated.
+
+set -e -x
+source script/functions.sh
+
+run_specs_and_record_done
+run_cukes
+
+if documentation_enforced; then
+  check_documentation_coverage
+fi
