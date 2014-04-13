@@ -159,23 +159,16 @@ module RSpec
       # @api private
       attr_reader :formatter
 
+      # @api private
+      def output
+        formatter.output
+      end
+
       # @api public
       #
       # @param formatter_class [Class] formatter class to build
       # @param args [Array<IO, Object>] arguments for the formatter, (usually IO but don't have to be)
       def initialize(formatter_class, *args)
-        base_const = ::RSpec::Core::Formatters
-        if defined?(base_const::BaseFormatter) && formatter_class.ancestors.include?(base_const::BaseFormatter)
-          formatter_class.class_exec do
-            include LegacyInterface
-          end
-        end
-        if defined?(base_const::BaseTextFormatter) && formatter_class.ancestors.include?(base_const::BaseTextFormatter)
-          formatter_class.class_exec do
-            include LegacyColorSupport
-            extend  LegacyColorSupport::ConstantLookup
-          end
-        end
         @formatter = formatter_class.new(*args)
       end
 

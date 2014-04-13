@@ -3,6 +3,17 @@ require "rspec/legacy_formatters/adaptor"
 require "rspec/core/formatters/helpers"
 require 'stringio'
 
+%w[
+  base_formatter
+  base_text_formatter
+  documentation_formatter
+  html_formatter
+  json_formatter
+  progress_formatter
+].each do |formatter|
+  require "rspec/legacy_formatters/#{formatter}"
+end
+
 # Namespace for the rspec code.
 module RSpec
   # Namespace for the rspec-legacy_formatters code.

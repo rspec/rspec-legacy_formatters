@@ -7,7 +7,7 @@ RSpec.describe RSpec::LegacyFormatters do
   it 'can access attributes provided by base class accessors in #initialize' do
     klass = Class.new(LegacyFormatterUsingSubClassing) do
       def initialize(*args)
-        example_count
+        examples
         super
       end
     end
