@@ -147,7 +147,7 @@ RSpec.describe RSpec::LegacyFormatters do
 
     it "will colorize summary" do
       allow(RSpec.configuration).to receive(:color_enabled?) { true }
-      expect(legacy_formatter.colorize_summary("text")).to include "\e[32mtext\e[0m"
+      expect(legacy_formatter.colorise_summary("text")).to include "\e[32mtext\e[0m"
     end
 
     it "allows access to the deprecated constants" do
