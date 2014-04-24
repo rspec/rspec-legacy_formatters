@@ -108,6 +108,10 @@ module RSpec
           "style=\"margin-left: #{(number_of_parents - 1) * 15}px;\""
         end
 
+        remove_const :REPORT_HEADER
+        remove_const :GLOBAL_SCRIPTS
+        remove_const :GLOBAL_STYLES
+        remove_const :HTML_HEADER
 
         REPORT_HEADER = <<-EOF
 <div class="rspec-report">

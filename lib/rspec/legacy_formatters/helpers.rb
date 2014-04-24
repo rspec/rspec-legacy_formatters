@@ -25,6 +25,8 @@ module RSpec
       module Helpers
         include LegacyBacktraceFormatter
 
+        remove_const :SUB_SECOND_PRECISION
+        remove_const :DEFAULT_PRECISION
         SUB_SECOND_PRECISION = 5
         DEFAULT_PRECISION = 2
 
