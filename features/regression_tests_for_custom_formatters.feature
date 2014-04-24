@@ -8,6 +8,11 @@ Feature: Regression tests for legacy custom formatters
       """
       And a file named "spec/spec_helper.rb" with:
       """
+      # Shelling out to `stty` doesn't work in aruba, so we fake out nyancat formatter
+      # to make it avoid that.  See here:
+      # https://github.com/mattsears/nyan-cat-formatter/blob/704b9f7718eea1620175551b8ac8abec59dd0f86/lib/nyan_cat_formatter.rb#L94-L98
+      JRUBY_VERSION = 'something'
+
       RSpec.configure do |rspec|
         rspec.after(:suite) do
           puts rspec.formatters.map(&:class).inspect
@@ -89,7 +94,6 @@ Feature: Regression tests for legacy custom formatters
     When I run `rspec --require rspec_spinner --format RspecSpinner::Spinner`
     Then the output should contain "TBD"
 
-  @wip
   Scenario: Use nyancat formatter
     When I run `rspec --format NyanCatFormatter`
-    Then the output should contain "TBD"
+    Then the output should contain "6/6: -*_*+*"
