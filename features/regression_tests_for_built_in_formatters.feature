@@ -73,6 +73,6 @@ Feature: Regression tests for built in formatters
     When I run `rspec --format json --profile --order defined`
     Then the output should contain:
      """
-     {"examples":[{"description":"passes"
+     "examples":
      """
      And the output should contain "7 examples, 4 failures, 1 pending"
