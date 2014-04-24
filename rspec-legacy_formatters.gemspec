@@ -30,7 +30,6 @@ Gem::Specification.new do |spec|
   spec.add_runtime_dependency     "rspec-core",    ">= 3.0.0.beta2"
   spec.add_runtime_dependency     "rspec-support", ">= 3.0.0.beta2"
 
-  spec.add_development_dependency "bundler",  "~> 1.5"
   spec.add_development_dependency "cucumber", "~> 1.3"
   spec.add_development_dependency "aruba",    "~> 0.5"
   spec.add_development_dependency "rake",     "~> 10.0.0"
