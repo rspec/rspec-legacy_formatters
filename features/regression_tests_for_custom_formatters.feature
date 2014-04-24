@@ -89,11 +89,6 @@ Feature: Regression tests for legacy custom formatters
     Then the output should contain "Some examples .F.F"
      And the output should not contain "ProgressFormatter"
 
-  @wip
-  Scenario: Use rspec-spinner formatter
-    When I run `rspec --require rspec_spinner --format RspecSpinner::Spinner`
-    Then the output should contain "TBD"
-
   Scenario: Use nyancat formatter
     When I run `rspec --format NyanCatFormatter`
     Then the output should contain "6/6: -*_*+*"
