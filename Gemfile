@@ -11,8 +11,6 @@ gemspec
   end
 end
 
-gem 'yard', '~> 0.8.7', :require => false
-
 ### deps for rdoc.info
 platforms :ruby do
   gem 'redcarpet',     '2.1.1'
