@@ -76,3 +76,11 @@ Feature: Regression tests for built in formatters
      "examples":
      """
      And the output should contain "7 examples, 4 failures, 1 pending"
+
+  Scenario: Use html formatter with profiling
+    When I run `rspec --format html --profile --order defined`
+    Then the output should contain:
+     """
+     <span class="comment"># gem install syntax to get syntax highlighting</span>
+     """
+     And the output should contain "7 examples, 4 failures, 1 pending"
