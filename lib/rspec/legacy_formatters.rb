@@ -50,4 +50,10 @@ module RSpec
     end
 
   end
+
+  module Core
+    # Needed for Fivemat.
+    # See https://github.com/rspec/rspec-core/pull/1129
+    PendingExampleFixedError = Pending::PendingExampleFixedError
+  end
 end

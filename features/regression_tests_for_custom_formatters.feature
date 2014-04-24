@@ -79,6 +79,11 @@ Feature: Regression tests for legacy custom formatters
      And the output should not contain any error backtraces
      And the output should not contain "ProgressFormatter"
 
+  Scenario: Use fivemat formatter
+    When I run `rspec --format Fivemat --order defined`
+    Then the output should contain "Some examples .F.F"
+     And the output should not contain "ProgressFormatter"
+
   @wip
   Scenario: Use rspec-spinner formatter
     When I run `rspec --require rspec_spinner --format RspecSpinner::Spinner`

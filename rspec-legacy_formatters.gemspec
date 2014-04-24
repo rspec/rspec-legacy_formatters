@@ -40,4 +40,5 @@ Gem::Specification.new do |spec|
   spec.add_development_dependency "rspec-instafail",        "0.2.4"
   spec.add_development_dependency "rspec_spinner",          "2.0.0"
   spec.add_development_dependency "rspec-extra-formatters", "1.0.0"
+  spec.add_development_dependency "fivemat",                "1.2.1"
 end
