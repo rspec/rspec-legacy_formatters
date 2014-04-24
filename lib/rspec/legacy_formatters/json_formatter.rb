@@ -4,10 +4,7 @@ require 'json'
 module RSpec
   module Core
     module Formatters
-
-      if defined?(JsonFormatter)
-        remove_const :JsonFormatter
-      end
+      remove_const :JsonFormatter
 
       class JsonFormatter < BaseFormatter
 

@@ -4,10 +4,7 @@ require 'stringio'
 module RSpec
   module Core
     module Formatters
-
-      if defined?(BaseFormatter)
-        remove_const :BaseFormatter
-      end
+      remove_const :BaseFormatter
 
       # RSpec's built-in formatters are all subclasses of RSpec::Core::Formatters::BaseTextFormatter,
       # but the BaseTextFormatter documents all of the methods needed to be implemented by a formatter,

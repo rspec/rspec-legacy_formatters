@@ -1,14 +1,11 @@
 require 'rspec/legacy_formatters/base_text_formatter'
+
 module RSpec
   module Core
     module Formatters
-
-      if defined?(ProgressFormatter)
-        remove_const :ProgressFormatter
-      end
+      remove_const :ProgressFormatter
 
       class ProgressFormatter < BaseTextFormatter
-
         def example_passed(example)
           super(example)
           output.print success_color('.')
@@ -28,9 +25,7 @@ module RSpec
           super()
           output.puts
         end
-
       end
-
     end
   end
 end

@@ -3,10 +3,7 @@ require 'rspec/legacy_formatters/base_text_formatter'
 module RSpec
   module Core
     module Formatters
-
-      if defined?(DocumentationFormatter)
-        remove_const :DocumentationFormatter
-      end
+      remove_const :DocumentationFormatter
 
       class DocumentationFormatter < BaseTextFormatter
         def initialize(output)

@@ -4,10 +4,7 @@ require 'rspec/legacy_formatters/html_printer'
 module RSpec
   module Core
     module Formatters
-
-      if defined?(HtmlFormatter)
-        remove_const :HtmlFormatter
-      end
+      remove_const :HtmlFormatter
 
       class HtmlFormatter < BaseTextFormatter
 

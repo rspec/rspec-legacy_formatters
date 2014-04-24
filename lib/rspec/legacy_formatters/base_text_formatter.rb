@@ -4,10 +4,7 @@ require 'set'
 module RSpec
   module Core
     module Formatters
-
-      if defined?(BaseTextFormatter)
-        remove_const :BaseTextFormatter
-      end
+      remove_const :BaseTextFormatter
 
       # Base for all of RSpec's built-in formatters. See RSpec::Core::Formatters::BaseFormatter
       # to learn more about all of the methods called by the reporter.
