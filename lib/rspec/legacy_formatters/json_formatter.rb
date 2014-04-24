@@ -43,7 +43,7 @@ module RSpec
             {
               :description => example.description,
               :full_description => example.full_description,
-              :status => example.execution_result[:status],
+              :status => example.execution_result.status,
               # :example_group,
               # :execution_result,
               :file_path => example.metadata[:file_path],
