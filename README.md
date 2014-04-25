@@ -1,6 +1,7 @@
-# Rspec::LegacyFormatters
+# RSpec::LegacyFormatters
 
-TODO: Write a gem description
+This gem provides support for using legacy formatters (that is, those
+that were written against the RSpec 2 formatter API) with RSpec 3.
 
 ## Installation
 
@@ -18,7 +19,18 @@ Or install it yourself as:
 
 ## Usage
 
-TODO: Write usage instructions here
+This gem MUST be required before the legacy formatter is loaded. We recommend
+you use RSpec's `--require` option, either from the command line:
+
+```
+$ rspec --require rspec/legacy_formatters --format MyCustomFormatter
+```
+
+...or by adding it to `.rspec`:
+
+```
+--require rspec/legacy_formatters
+```
 
 ## Contributing
 
