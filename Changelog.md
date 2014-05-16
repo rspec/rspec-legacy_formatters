@@ -1,4 +1,3 @@
-### Development
-[Full Changelog](http://github.com/rspec/rspec-legacy_formatters/compare/master...master)
+### 1.0.0.rc1 / 2014-05-16
 
-* Extracted from `rspec-core`. (Jon Rowe)
+Initial release.
