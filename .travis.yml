@@ -18,4 +18,3 @@ matrix:
   allow_failures:
     - rvm: rbx
   fast_finish: true
-
