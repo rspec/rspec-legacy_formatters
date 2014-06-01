@@ -43,7 +43,7 @@ module FormatterSupport
     instance_double("RSpec::Core::Example",
                     :description      => "Example",
                     :full_description => "Example",
-                    :execution_result => { :exception => Exception.new },
+                    :execution_result => instance_double(RSpec::Core::Example::ExecutionResult, :exception => Exception.new).as_null_object ,
                     :metadata         => {}
                    )
   end
@@ -57,7 +57,7 @@ module FormatterSupport
   end
 
   def example_notification(specific_example = example)
-   ::RSpec::Core::Notifications::ExampleNotification.new specific_example
+   ::RSpec::Core::Notifications::ExampleNotification.for specific_example
   end
 
   def group_notification

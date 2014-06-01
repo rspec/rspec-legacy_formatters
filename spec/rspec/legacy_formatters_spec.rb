@@ -101,8 +101,12 @@ RSpec.describe RSpec::LegacyFormatters do
 
       describe "#dump_summary" do
         it "notifies formatter of dump_summary" do
-          duration, count, failures, pending = 3.5, 10, 3, 2
-          send_notification :dump_summary, summary_notification(duration, count, failures, pending, 0)
+          duration  = 3.5
+          examples  = Array.new(10) { instance_double(RSpec::Core::Example).as_null_object }
+          failures  = examples.first(3)
+          pending   = examples.last(2)
+
+          send_notification :dump_summary, summary_notification(duration, examples, failures, pending, 0)
           expect(output.string).to(
                 match("Finished in 3.5").
             and match("3/10 failed.").
