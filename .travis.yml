@@ -13,8 +13,6 @@ rvm:
   - ree
   - jruby-18mode
   - jruby
-  - rbx
+  - rbx-2
 matrix:
-  allow_failures:
-    - rvm: rbx
   fast_finish: true
