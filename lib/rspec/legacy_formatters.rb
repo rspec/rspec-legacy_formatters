@@ -1,3 +1,4 @@
+require "rspec/core"
 require "rspec/legacy_formatters/version"
 require "rspec/legacy_formatters/adaptor"
 require 'stringio'
