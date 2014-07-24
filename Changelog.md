@@ -1,3 +1,11 @@
+### Development
+[Full Changelog](http://github.com/rspec/rspec-legacy_formatters/compare/v1.0.0...master)
+
+Bug Fixes:
+
+* Require 'rspec-core' directly to ensure load ordering doesn't
+  affect us. (Jon Rowe, #9)
+
 ### 1.0.0 / 2014-06-01
 
 Minor changes to internals and specs. Releasing to take it out of pre-release.
