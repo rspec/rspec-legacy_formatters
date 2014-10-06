@@ -2,15 +2,6 @@ source "https://rubygems.org"
 
 gemspec
 
-%w[rspec rspec-core rspec-expectations rspec-mocks rspec-support].each do |lib|
-  library_path = File.expand_path("../../#{lib}", __FILE__)
-  if File.exist?(library_path) && !ENV['USE_GIT_REPOS']
-    gem lib, :path => library_path
-  else
-    gem lib, :git => "git://github.com/rspec/#{lib}.git"
-  end
-end
-
 ### deps for rdoc.info
 platforms :ruby do
   gem 'redcarpet',     '2.1.1'
