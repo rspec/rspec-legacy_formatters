@@ -1,11 +1,8 @@
-require 'rspec/core/formatters/console_codes'
-require 'rspec/legacy_formatters'
-
 RSpec.describe RSpec::LegacyFormatters do
   include FormatterSupport
 
   it 'can access attributes provided by base class accessors in #initialize' do
-    klass = Class.new(LegacyFormatterUsingSubClassing) do
+    klass = Class.new(::LegacyFormatterUsingSubClassing) do
       def initialize(*args)
         examples
         super
