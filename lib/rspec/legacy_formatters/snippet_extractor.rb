@@ -5,13 +5,24 @@ module RSpec
       #
       # Extracts code snippets by looking at the backtrace of the passed error and applies synax highlighting and line numbers using html.
       class SnippetExtractor
-        class NullConverter; def convert(code, pre); code; end; end
+
+        if defined?(NullConverter) && (Class === NullConverter)
+          LegacyNullConverter = NullConverter.new
+        elsif defined?(NullConverter)
+          LegacyNullConverter = NullConverter
+        else
+          module LegacyNullConverter
+            def self.convert(code)
+              code
+            end
+          end
+        end
 
         begin
           require 'syntax/convertors/html'
           @@converter = Syntax::Convertors::HTML.for_syntax "ruby"
         rescue LoadError
-          @@converter = NullConverter.new
+          @@converter = LegacyNullConverter
         end
 
         # @api private
@@ -24,7 +35,7 @@ module RSpec
         # @see #post_process
         def snippet(backtrace)
           raw_code, line = snippet_for(backtrace[0])
-          highlighted = @@converter.convert(raw_code, false)
+          highlighted = @@converter.convert(raw_code)
           highlighted << "\n<span class=\"comment\"># gem install syntax to get syntax highlighting</span>" if @@converter.is_a?(NullConverter)
           post_process(highlighted, line)
         end
