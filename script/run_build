@@ -5,9 +5,14 @@
 set -e -x
 source script/functions.sh
 
-run_specs_and_record_done
-run_cukes
+# We can't run our normal specs with all versions of rspec
+if rspec_version_defined; then
+  run_sample_specs
+else
+  run_specs_and_record_done
+  run_cukes
 
-if documentation_enforced; then
-  check_documentation_coverage
+  if documentation_enforced; then
+    check_documentation_coverage
+  fi
 fi

@@ -9,3 +9,6 @@ tmp
 bin
 bundle
 Gemfile-custom
+smoke_specs/.rspec
+smoke_specs/specs.out
+smoke_specs/spec/examples.txt

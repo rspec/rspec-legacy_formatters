@@ -59,18 +59,20 @@ function rspec_support_compatible {
   fi
 }
 
-function documentation_enforced {
-  if [ -x ./bin/yard ]; then
+function rspec_version_defined {
+  if [ "$RSPEC_VERSION" != "" ]; then
     return 0
   else
     return 1
   fi
 }
 
-function clone_repo {
-  if [ ! -d $1 ]; then # don't clone if the dir is already there
-    travis_retry git clone git://github.com/rspec/$1 --depth 1 --branch $MAINTENANCE_BRANCH
-  fi;
+function documentation_enforced {
+  if [ -x ./bin/yard ]; then
+    return 0
+  else
+    return 1
+  fi
 }
 
 function run_specs_and_record_done {
@@ -83,6 +85,33 @@ function run_specs_and_record_done {
   fi;
 
   $rspec_bin spec --backtrace --format progress --profile --format progress --out $SPECS_HAVE_RUN_FILE
+}
+
+function run_sample_specs {
+  if [ ! -f ./smoke_specs/$SPECS_HAVE_RUN_FILE ]; then # don't rerun specs that have already run
+    pushd ./smoke_specs
+    echo
+    echo "Running smoke specs for $RSPEC_VERSION"
+    echo
+    unset BUNDLE_GEMFILE
+    bundle_install_flags=`cat ../.travis.yml | grep bundler_args | tr -d '"' | grep -o " .*"`
+    travis_retry bundle install $bundle_install_flags
+    cp ../.rspec .rspec
+    set +e
+    bin/rspec spec ../spec --format NyanCatFormatter --format NyanCatFormatter --out $SPECS_HAVE_RUN_FILE
+    local status=$?
+    set -e
+    popd
+    # 42 is set in the rspec config for the smoke tests,
+    # so we can differentiate between crashes and real failures
+    if test $status = 42; then
+      echo "Build passed"
+      return 0
+    else
+      echo "Build failed"
+      return 1
+    fi
+  fi;
 }
 
 function run_cukes {
@@ -107,26 +136,6 @@ function run_cukes {
          bin/cucumber --strict
     fi
   fi
-}
-
-function run_specs_one_by_one {
-  for file in `find spec -iname '*_spec.rb'`; do
-    bin/rspec $file -b --format progress
-  done
-}
-
-function run_spec_suite_for {
-  if [ ! -f ../$1/$SPECS_HAVE_RUN_FILE ]; then # don't rerun specs that have already run
-    pushd ../$1
-    echo
-    echo "Running specs for $1"
-    echo
-    unset BUNDLE_GEMFILE
-    bundle_install_flags=`cat .travis.yml | grep bundler_args | tr -d '"' | grep -o " .*"`
-    travis_retry bundle install $bundle_install_flags
-    run_specs_and_record_done
-    popd
-  fi;
 }
 
 function check_documentation_coverage {

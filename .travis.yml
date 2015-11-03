@@ -18,4 +18,14 @@ matrix:
   include:
     - rvm: jruby
       env: JRUBY_OPTS='--2.0'
+    - rvm: 2.2
+      env: RSPEC_VERSION='3-0-maintenance'
+    - rvm: 2.2
+      env: RSPEC_VERSION='3-1-maintenance'
+    - rvm: 2.2
+      env: RSPEC_VERSION='3-2-maintenance'
+    - rvm: 2.2
+      env: RSPEC_VERSION='3-3-maintenance'
+    - rvm: 2.2
+      env: RSPEC_VERSION='3-4-maintenance'
   fast_finish: true
