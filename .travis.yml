@@ -3,6 +3,8 @@
 
 bundler_args: "--binstubs --standalone --without documentation --path ../bundle"
 script: "script/run_build"
+before_install:
+  - gem update bundler
 rvm:
   - 1.8.7
   - 1.9.2
