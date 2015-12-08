@@ -1,0 +1,9 @@
+source "https://rubygems.org"
+
+gem "rspec", :github => "rspec/rspec", :branch => ENV['RSPEC_VERSION']
+%w[core mocks expectations support].each do |name|
+  gem "rspec-#{name}", :github => "rspec/rspec-#{name}", :branch => ENV['RSPEC_VERSION']
+end
+
+gem 'rspec-legacy_formatters', path: '../'
+gem 'nyan-cat-formatter', '0.5.2'
