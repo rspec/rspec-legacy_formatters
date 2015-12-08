@@ -30,4 +30,7 @@ matrix:
       env: RSPEC_VERSION='3-3-maintenance'
     - rvm: 2.2
       env: RSPEC_VERSION='3-4-maintenance'
+  allow_failures:
+    - rvm: jruby
+      env: JRUBY_OPTS='--2.0'
   fast_finish: true
