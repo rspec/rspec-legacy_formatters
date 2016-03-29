@@ -9,7 +9,7 @@ Gem::Specification.new do |spec|
   spec.authors       = ["Jon Rowe"]
   spec.email         = ["hello@jonrowe.co.uk"]
   spec.email         = "rspec@googlegroups.com"
-  spec.homepage      = "http://github.com/rspec/rspec-legacy_formatters"
+  spec.homepage      = "https://github.com/rspec/rspec-legacy_formatters"
   spec.summary       = "rspec-legacy_formatters-#{RSpec::LegacyFormatters::Version::STRING}"
   spec.description   = %q{Support for RSpec 2.x formatters on 3.x}
   spec.license       = "MIT"
