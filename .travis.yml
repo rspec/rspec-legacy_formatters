@@ -1,6 +1,11 @@
 # This file was generated on 2014-03-30T13:16:22-07:00 from the rspec-dev repo.
 # DO NOT modify it by hand as your changes will get lost the next time it is generated.
 
+# In order to install old Rubies, we need to use old Ubuntu distibution.
+dist: trusty
+language: ruby
+email: false
+
 bundler_args: "--binstubs --standalone --without documentation --path ../bundle"
 script: "script/run_build"
 before_install:
@@ -9,28 +14,39 @@ rvm:
   - 1.8.7
   - 1.9.2
   - 1.9.3
-  - 2.0
+  - 2.0.0
   - 2.1
-  - 2.2
-  - 2.3.0
+  - 2.2.10
+  - 2.3.8
+  - 2.4.6
+  - 2.5.5
+  - 2.6.3
   - ree
   - jruby-18mode
   - jruby
-  - rbx-2
+  - rbx-3
 matrix:
   include:
     - rvm: jruby
       env: JRUBY_OPTS='--2.0'
-    - rvm: 2.2
+    - rvm: 2.6.3
       env: RSPEC_VERSION='3-0-maintenance'
-    - rvm: 2.2
+    - rvm: 2.6.3
       env: RSPEC_VERSION='3-1-maintenance'
-    - rvm: 2.2
+    - rvm: 2.6.3
       env: RSPEC_VERSION='3-2-maintenance'
-    - rvm: 2.2
+    - rvm: 2.6.3
       env: RSPEC_VERSION='3-3-maintenance'
-    - rvm: 2.2
+    - rvm: 2.6.3
       env: RSPEC_VERSION='3-4-maintenance'
+    - rvm: 2.6.3
+      env: RSPEC_VERSION='3-5-maintenance'
+    - rvm: 2.6.3
+      env: RSPEC_VERSION='3-6-maintenance'
+    - rvm: 2.6.3
+      env: RSPEC_VERSION='3-7-maintenance''
+    - rvm: 2.6.3
+      env: RSPEC_VERSION='3-8-maintenance''
   allow_failures:
     - rvm: jruby
       env: JRUBY_OPTS='--2.0'
