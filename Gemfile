@@ -10,6 +10,8 @@ end
 
 gem 'simplecov', '~> 0.8'
 
+gem 'contracts', '< 0.16' if RUBY_VERSION < '1.9.0'
+
 platforms :ruby_18, :jruby do
   gem 'json'
 end
