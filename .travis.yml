@@ -50,4 +50,5 @@ matrix:
   allow_failures:
     - rvm: jruby
       env: JRUBY_OPTS='--2.0'
+    - rvm: rbx-3
   fast_finish: true
