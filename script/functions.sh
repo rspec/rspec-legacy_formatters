@@ -97,8 +97,13 @@ function run_specs_as_version {
     bundle_install_flags=`cat ../.travis.yml | grep bundler_args | tr -d '"' | grep -o " .*"`
     travis_retry bundle install $bundle_install_flags
     cp ../.rspec .rspec
+
+    # First check that we can run our spec suite
+    bin/rspec ../spec --format NyanCatFormatter --format NyanCatFormatter
+
     set +e
-    bin/rspec spec ../spec --format NyanCatFormatter --format NyanCatFormatter --out $SPECS_HAVE_RUN_FILE
+    # Then check we can run the smoke suite
+    bin/rspec spec --format NyanCatFormatter --format NyanCatFormatter --out $SPECS_HAVE_RUN_FILE
     local status=$?
     set -e
     popd
