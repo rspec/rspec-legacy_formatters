@@ -46,7 +46,9 @@ module RSpec
         def snippet(backtrace)
           raw_code, line = snippet_for(backtrace[0])
           highlighted = @@converter.convert(raw_code)
-          highlighted << "\n<span class=\"comment\"># gem install syntax to get syntax highlighting</span>" if @@converter.is_a?(NullConverter)
+          if LegacyNullConverter == @@converter || (defined?(NullConverter) && @@converter.is_a?(NullConverter))
+            highlighted << "\n<span class=\"comment\"># gem install syntax to get syntax highlighting</span>"
+          end
           post_process(highlighted, line)
         end
 
