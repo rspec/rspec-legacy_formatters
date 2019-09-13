@@ -87,7 +87,7 @@ function run_specs_and_record_done {
   $rspec_bin spec --backtrace --format progress --profile --format progress --out $SPECS_HAVE_RUN_FILE
 }
 
-function run_sample_specs {
+function run_specs_as_version {
   if [ ! -f ./smoke_specs/$SPECS_HAVE_RUN_FILE ]; then # don't rerun specs that have already run
     pushd ./smoke_specs
     echo
