@@ -102,6 +102,19 @@ function run_specs_as_version {
     bin/rspec ../spec --format NyanCatFormatter --format NyanCatFormatter
 
     set +e
+    # Then check RSpec 2.x formatters
+    bin/rspec spec -r ../lib/rspec/legacy_formatters/documentation_formatter.rb --format RSpec::Core::Formatters::DocumentationFormatter
+    local documentation_status=$?
+
+    bin/rspec spec -r ../lib/rspec/legacy_formatters/json_formatter.rb --format RSpec::Core::Formatters::JsonFormatter
+    local json_status=$?
+
+    bin/rspec spec -r ../lib/rspec/legacy_formatters/html_formatter.rb --format RSpec::Core::Formatters::HtmlFormatter
+    local html_status=$?
+
+    bin/rspec spec -r ../lib/rspec/legacy_formatters/progress_formatter.rb --format RSpec::Core::Formatters::ProgressFormatter
+    local progress_status=$?
+
     # Then check we can run the smoke suite
     bin/rspec spec --format NyanCatFormatter --format NyanCatFormatter --out $SPECS_HAVE_RUN_FILE
     local status=$?
@@ -109,7 +122,13 @@ function run_specs_as_version {
     popd
     # 42 is set in the rspec config for the smoke tests,
     # so we can differentiate between crashes and real failures
-    if test $status = 42; then
+    if
+      (test $status = 42) &&
+      (test $documentation_status = 42) &&
+      (test $json_status = 42) &&
+      (test $html_status = 42) &&
+      (test $progress_status = 42)
+    then
       echo "Build passed"
       return 0
     else
