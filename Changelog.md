@@ -1,4 +1,4 @@
-### Development
+### 1.0.2 / 2019-09-18
 
 Bug Fixes:
 
