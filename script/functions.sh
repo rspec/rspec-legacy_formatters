@@ -87,7 +87,7 @@ function run_specs_and_record_done {
   $rspec_bin spec --backtrace --format progress --profile --format progress --out $SPECS_HAVE_RUN_FILE
 }
 
-function run_sample_specs {
+function run_specs_as_version {
   if [ ! -f ./smoke_specs/$SPECS_HAVE_RUN_FILE ]; then # don't rerun specs that have already run
     pushd ./smoke_specs
     echo
@@ -97,14 +97,38 @@ function run_sample_specs {
     bundle_install_flags=`cat ../.travis.yml | grep bundler_args | tr -d '"' | grep -o " .*"`
     travis_retry bundle install $bundle_install_flags
     cp ../.rspec .rspec
+
+    # First check that we can run our spec suite
+    bin/rspec ../spec --format NyanCatFormatter --format NyanCatFormatter
+
     set +e
-    bin/rspec spec ../spec --format NyanCatFormatter --format NyanCatFormatter --out $SPECS_HAVE_RUN_FILE
+    # Then check RSpec 2.x formatters
+    bin/rspec spec -r ../lib/rspec/legacy_formatters/documentation_formatter.rb --format RSpec::Core::Formatters::DocumentationFormatter
+    local documentation_status=$?
+
+    bin/rspec spec -r ../lib/rspec/legacy_formatters/json_formatter.rb --format RSpec::Core::Formatters::JsonFormatter
+    local json_status=$?
+
+    bin/rspec spec -r ../lib/rspec/legacy_formatters/html_formatter.rb --format RSpec::Core::Formatters::HtmlFormatter
+    local html_status=$?
+
+    bin/rspec spec -r ../lib/rspec/legacy_formatters/progress_formatter.rb --format RSpec::Core::Formatters::ProgressFormatter
+    local progress_status=$?
+
+    # Then check we can run the smoke suite
+    bin/rspec spec --format NyanCatFormatter --format NyanCatFormatter --out $SPECS_HAVE_RUN_FILE
     local status=$?
     set -e
     popd
     # 42 is set in the rspec config for the smoke tests,
     # so we can differentiate between crashes and real failures
-    if test $status = 42; then
+    if
+      (test $status = 42) &&
+      (test $documentation_status = 42) &&
+      (test $json_status = 42) &&
+      (test $html_status = 42) &&
+      (test $progress_status = 42)
+    then
       echo "Build passed"
       return 0
     else

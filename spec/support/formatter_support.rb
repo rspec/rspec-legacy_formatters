@@ -42,6 +42,7 @@ module FormatterSupport
   def example
     instance_double("RSpec::Core::Example",
                     :description      => "Example",
+                    :example_group    => group,
                     :full_description => "Example",
                     :execution_result => instance_double(RSpec::Core::Example::ExecutionResult, :exception => Exception.new).as_null_object ,
                     :metadata         => {}
@@ -49,7 +50,12 @@ module FormatterSupport
   end
 
   def group
-    class_double "RSpec::Core::ExampleGroup", :description => "Group"
+    class_double(
+      "RSpec::Core::ExampleGroup",
+      :description => "Group",
+      :parent_groups => [],
+      :top_level? => false
+    )
   end
 
   def start_notification(count)

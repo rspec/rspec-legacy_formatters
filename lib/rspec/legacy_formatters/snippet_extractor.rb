@@ -1,6 +1,8 @@
 module RSpec
   module Core
     module Formatters
+      remove_const :SnippetExtractor
+
       # @api private
       #
       # Extracts code snippets by looking at the backtrace of the passed error and applies synax highlighting and line numbers using html.
@@ -25,6 +27,14 @@ module RSpec
           @@converter = LegacyNullConverter
         end
 
+        # Copied from the 3.4 version, but with default overrides to cope with
+        # our usage
+        def initialize(source=nil, beginning_line_number=nil, max_line_count=nil)
+          @source = source
+          @beginning_line_number = beginning_line_number
+          @max_line_count = max_line_count
+        end
+
         # @api private
         #
         # Extract lines of code corresponding to  a backtrace.
@@ -36,7 +46,9 @@ module RSpec
         def snippet(backtrace)
           raw_code, line = snippet_for(backtrace[0])
           highlighted = @@converter.convert(raw_code)
-          highlighted << "\n<span class=\"comment\"># gem install syntax to get syntax highlighting</span>" if @@converter.is_a?(NullConverter)
+          if LegacyNullConverter == @@converter || (defined?(NullConverter) && @@converter.is_a?(NullConverter))
+            highlighted << "\n<span class=\"comment\"># gem install syntax to get syntax highlighting</span>"
+          end
           post_process(highlighted, line)
         end
 

@@ -1,3 +1,10 @@
+### Development
+
+Bug Fixes:
+
+* Fix formatters using / extending the legacy HTML formatter which would crash
+  due to a change in the `SnippetExtractor` in RSpec 3.4. (Jon Rowe, #22)
+
 ### 1.0.1 / 2015-11-05
 [Full Changelog](http://github.com/rspec/rspec-legacy_formatters/compare/v1.0.0...v1.0.1)
 

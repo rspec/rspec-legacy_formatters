@@ -1,5 +1,6 @@
 require 'rspec/legacy_formatters/base_text_formatter'
 require 'rspec/legacy_formatters/html_printer'
+require 'rspec/legacy_formatters/snippet_extractor'
 
 module RSpec
   module Core
