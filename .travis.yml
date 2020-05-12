@@ -18,9 +18,10 @@ rvm:
   - 2.1
   - 2.2.10
   - 2.3.8
-  - 2.4.6
-  - 2.5.5
-  - 2.6.3
+  - 2.4.10
+  - 2.5.8
+  - 2.6.6
+  - 2.7.1
   - ree
   - jruby-18mode
   - jruby
@@ -29,23 +30,23 @@ matrix:
   include:
     - rvm: jruby
       env: JRUBY_OPTS='--2.0'
-    - rvm: 2.6.3
+    - rvm: 2.7.1
       env: RSPEC_VERSION='3-0-maintenance'
-    - rvm: 2.6.3
+    - rvm: 2.7.1
       env: RSPEC_VERSION='3-1-maintenance'
-    - rvm: 2.6.3
+    - rvm: 2.7.1
       env: RSPEC_VERSION='3-2-maintenance'
-    - rvm: 2.6.3
+    - rvm: 2.7.1
       env: RSPEC_VERSION='3-3-maintenance'
-    - rvm: 2.6.3
+    - rvm: 2.7.1
       env: RSPEC_VERSION='3-4-maintenance'
-    - rvm: 2.6.3
+    - rvm: 2.7.1
       env: RSPEC_VERSION='3-5-maintenance'
-    - rvm: 2.6.3
+    - rvm: 2.7.1
       env: RSPEC_VERSION='3-6-maintenance'
-    - rvm: 2.6.3
+    - rvm: 2.7.1
       env: RSPEC_VERSION='3-7-maintenance''
-    - rvm: 2.6.3
+    - rvm: 2.7.1
       env: RSPEC_VERSION='3-8-maintenance''
   allow_failures:
     - rvm: jruby
