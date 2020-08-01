@@ -1,3 +1,5 @@
+warn "This branch is deprecated. Please use `main`."
+
 require "rspec/core"
 require "rspec/legacy_formatters/version"
 require "rspec/legacy_formatters/adaptor"
