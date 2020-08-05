@@ -23,7 +23,11 @@ gem 'simplecov', '~> 0.8'
 gem 'contracts', '< 0.16' if RUBY_VERSION < '1.9.0'
 
 platforms :ruby_18, :ruby_19, :jruby do
-  gem 'json', '< 2.0.0'
+  if RUBY_VERSION < '2.0.0' || RUBY_ENGINE == 'java'
+    gem 'json', '< 2.0.0'
+  else
+    gem 'json', '> 2.3.0'
+  end
 end
 
 platforms :jruby do
