@@ -15,7 +15,7 @@ elsif RUBY_VERSION < '2.0'
 elsif defined?(RUBY_ENGINE) && RUBY_ENGINE == 'rbx'
   gem 'ffi', '< 1.11.0'
 else
-  gem 'ffi', '~> 1.11.0'
+  gem 'ffi', '> 1.11.0'
 end
 
 gem 'simplecov', '~> 0.8'
