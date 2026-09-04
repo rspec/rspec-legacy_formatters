@@ -15,12 +15,14 @@ elsif RUBY_VERSION < '2.0'
 elsif defined?(RUBY_ENGINE) && RUBY_ENGINE == 'rbx'
   gem 'ffi', '< 1.11.0'
 else
-  gem 'ffi', '~> 1.11.0'
+  gem 'ffi', '> 1.11.0'
 end
 
 gem 'simplecov', '~> 0.8'
 
 gem 'contracts', '< 0.16' if RUBY_VERSION < '1.9.0'
+
+gem 'yard'
 
 platforms :ruby_18, :ruby_19, :jruby do
   if RUBY_VERSION < '2.0.0' || RUBY_ENGINE == 'java'
