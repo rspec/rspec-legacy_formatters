@@ -3,6 +3,9 @@
 This gem provides support for using legacy formatters (that is, those
 that were written against the RSpec 2 formatter API) with RSpec 3.
 
+*Note* this library is considered deprecated, it exists for legacy support for 2 -> 3
+and will not be updated for Ruby 3 or RSpec 4.
+
 ## Installation
 
 Add this line to your application's Gemfile:
